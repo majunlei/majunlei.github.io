@@ -59,9 +59,13 @@
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">文章</a>
+    			
             
     			
             
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
 		</nav>
@@ -208,19 +212,19 @@
 
 
   
-    <article id="post-大王卡使用指北" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-大王卡怎么使用才省钱" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/28/大王卡使用指北/">大王卡怎么使用才省钱</a>
+      <a class="article-title" href="/2018/01/28/大王卡怎么使用才省钱/">大王卡怎么使用才省钱</a>
     </h1>
   
 
         
-        <a href="/2018/01/28/大王卡使用指北/" class="archive-article-date">
+        <a href="/2018/01/28/大王卡怎么使用才省钱/" class="archive-article-date">
   	<time datetime="2018-01-28T14:37:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-28</time>
 </a>
         
@@ -233,7 +237,7 @@
 </blockquote>
 <h2 id="1-大王卡是只要使用1K就收一块钱吗？"><a href="#1-大王卡是只要使用1K就收一块钱吗？" class="headerlink" title="1. 大王卡是只要使用1K就收一块钱吗？"></a>1. 大王卡是只要使用1K就收一块钱吗？</h2><p>不是，但是也差不多。<br>大王卡是日租卡，收费机制是一天的流量到达1元（10M）的流量使用费后，余下的800M就免费了。因此使用不到1元，比如1K，只需要几分。<br>但是话说回来，要是用日租流量的话，一天也很难不用10M。<br>附图：<br>
         
-          <a class="article-more-a" href="/2018/01/28/大王卡使用指北/#more">more >></a>
+          <a class="article-more-a" href="/2018/01/28/大王卡怎么使用才省钱/#more">more >></a>
         
       
 
@@ -257,7 +261,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/28/大王卡使用指北/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/01/28/大王卡怎么使用才省钱/">展开全文 >></a>
         </p>
       
 
@@ -317,8 +321,8 @@
 		open_in_new: false,
 		toc_hide_index: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -334,9 +338,13 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
+      
+      
     
       
     
+      
+      
       
     
     
@@ -345,18 +353,91 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">文章</a></li>
+      
         
       
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">坦克世界</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
     
 
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">分享有用的&lt;br/&gt; 记录有趣的&lt;br/&gt; 用笔记录，用心生活</div>
+  	  	
+    	</section>
     
   </div>
   
